@@ -1,0 +1,25 @@
+{
+  "name": "book-managment-webapp",
+  "version": "1.0.0",
+  "description": "API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdityaBattin/Book-Managment-webapp.git"
+  },
+  "author": "AdityaBattin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdityaBattin/Book-Managment-webapp/issues"
+  },
+  "homepage": "https://github.com/AdityaBattin/Book-Managment-webapp#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
