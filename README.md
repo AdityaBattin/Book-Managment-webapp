@@ -45,6 +45,8 @@ DELETE : DELETE a book by ID(ony if it is not issued)
 
 ## /books/issued/withFine
 
+<!-- To Do Task ..... -->
+
 GET : Get all issued books with Fine
 
 # subscription Types
@@ -52,6 +54,8 @@ GET : Get all issued books with Fine
 Basic : 3 months
 Standard : 6 months
 Premium : 12 months
+
+Note :Dates will be in format MM/DD/YYYY
 
 # Logic :
 
