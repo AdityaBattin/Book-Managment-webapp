@@ -7,6 +7,32 @@ const { users } = require("../data/users.json");
 const { route } = require("./users");
 
 /**
+ * Route : /books/find/:id
+ * Methord used GET
+ * Discrition : Get a book by ID
+ * Access : Public
+ * Parameters : ID
+ */
+
+router.get("/find/:id", (req, res) => {
+  const { id } = req.params;
+  const book = books.find((each) => each.id === id);
+
+  if (!book) {
+    return res.status(404).json({
+      success: false,
+      massage: "Book not Found in DataBase",
+    });
+  }
+
+  return res.status(200).json({
+    success: true,
+    massage: "book Found fetching ....",
+    data: book,
+  });
+});
+
+/**
  * Route : /books
  * Methord used GET
  * Discrition : Getting all books
@@ -61,28 +87,76 @@ router.get("/issued", (req, res) => {
 });
 
 /**
- * Route : /books/:id
- * Methord used GET
- * Discrition : Get a book by ID
+ * Route : /books
+ * Methord used POST
+ * Discrition : Create new Book
  * Access : Public
- * Parameters : ID
+ * Parameters : Author, Name ,Genre, Prise, id.
  */
 
-router.get("/:id", (req, res) => {
-  const { id } = req.params;
-  const book = books.find((each) => each.id === id);
+router.post("/", (req, res) => {
+  const { data } = req.body;
 
-  if (!book) {
+  if (!data) {
     return res.status(404).json({
       success: false,
-      massage: "Book not Found in DataBase",
+      message: "No data provided :( ",
     });
   }
 
+  const book = books.find((each) => each.id === data.id);
+
+  if (book) {
+    return res.status(404).json({
+      success: false,
+      massage: "Book already exits with this ID please use a unique ID",
+    });
+  }
+
+  const allBooks = [...books, data]; // books contains all the books imported and ,data added the data of the book in the body to it
+  return res.status(404).json({
+    success: true,
+    massage: "Successfuly added an element",
+    Newdata: data,
+    TotalData: allBooks,
+  });
+
+  //Missing Fields Check can also be done
+});
+
+/**
+ * Route : /books/id
+ * Methord used PUT
+ * Discrition : Update Existing Book
+ * Access : Public
+ * Parameters : Author, Name ,Genre, Prise, Publisher, id.
+ */
+
+router.put("/:id", (req, res) => {
+  const { id } = req.params;
+  const { data } = req.body;
+
+  const book = books.find((each) => each.id === id);
+  if (!book) {
+    return res.status(404).json({
+      success: false,
+      massage: "Book does not exist with that id",
+    });
+  }
+
+  //we found the book so updating
+  const updateData = books.map((each, index) => {
+    if (each.id === id) {
+      return { ...each, ...data }; //In each data update data from the body
+    }
+    return each;
+  });
+
   return res.status(200).json({
     success: true,
-    massage: "book Found fetching ....",
-    data: book,
+    newdata: data,
+    atID: id,
+    data: updateData,
   });
 });
 
