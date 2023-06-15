@@ -1,5 +1,10 @@
 # Book-Managment-webapp
 
+## API Documentation using Postman
+DOCS : ("https://documenter.getpostman.com/view/23026707/2s93sgWVsw")
+## Hosting on Render.com
+BASE_URL : https://book-managment-webapp.onrender.com
+
 created a book management application API using NodeJS and Express.
 for managment of records and book
 
